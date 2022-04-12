@@ -6,7 +6,7 @@ pipeline{
   stages{ 
   stage('build image'){
     steps{
-    sh 'docker build -t lwhatizlove/apache_repo:server_last_version .'
+    sh 'docker build -t lwhatizlove/apache_repo:$GIT_COMMIT .'
     }
   }
   stage('pushing to dockerhub'){
