@@ -7,8 +7,8 @@ pipeline{
   environment{
   dockerhub = credentials(Dockerhub_credentials)
   }
-  
-  stage('build_image'){
+  stages{ 
+  stage('build image'){
     when{
       branch 'master'
    }
@@ -21,4 +21,5 @@ pipeline{
     sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
     sh 'docker push lwhatizlove/apache_repo:$GIT_COMMIT'
   }
+}
 }
