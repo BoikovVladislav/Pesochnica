@@ -12,7 +12,7 @@ pipeline{
   }
   stage('Deploy and start'){
     steps{
-    sh 'docker ps | awk NR\ ==\ 2{print\ \$1\} | sudo xargs docker stop
+    sh 'docker ps | awk NR\ ==\ 2{print\ \$1\} | sudo xargs docker stop'
     
     sh 'docker run -d -p 80:80 lwhatizlove/apache_repo:$GIT_COMMIT'
     }
