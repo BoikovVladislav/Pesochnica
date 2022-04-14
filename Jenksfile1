@@ -1,0 +1,19 @@
+pipeline{
+  agent any
+  environment{
+  dockerhub = credentials('Dockerhub_credentials')
+  }
+  stages{ 
+  stage('pulling image'){
+    steps{
+    sh 'echo $dockerhub_PSW | docker login -u $dockerhub_USR --password-stdin'
+    sh 'docker pull lwhatizlove/apache_repo:$MY_GIT_COMMIT'
+    }
+  }
+  stage('Deploy and start'){
+    steps{
+    sh 'docker run lwhatizlove/apache_repo:$MY_GIT_COMMIT -p 80:80'
+    }
+  }
+}
+}
