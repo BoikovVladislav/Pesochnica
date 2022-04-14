@@ -12,7 +12,7 @@ pipeline{
   }
   stage('Deploy and start'){
     steps{
-    sh 'docker run lwhatizlove/apache_repo:$GIT_COMMIT'
+    sh 'docker run -d -p 80:80 lwhatizlove/apache_repo:$GIT_COMMIT'
     }
   }
 }
